@@ -13,3 +13,12 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <clocale>
+#include <chrono>
+#include <string>
+
+using namespace std;
+
+//Util
+#include "SingleTon.h"
+#include <crtdbg.h>

@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "WinAPI.h"
+#include "CCore.h"
 
 #define MAX_LOADSTRING 100
 
@@ -35,6 +36,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
+    //한국 지역 설정
+    setlocale(LC_ALL, "Korean");
+    //메모리 누수 체크
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF || _CRTDBG_LEAK_CHECK_DF);
+
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_WINDOWSAPI, szWindowClass, MAX_LOADSTRING);
@@ -48,17 +54,38 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINDOWSAPI));
 
+    CORE->Init();
+
+    //게임 메시지 루프입니다:
     MSG msg;
+    while (true) {
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+            //메시지 처리
+            if (WM_QUIT == msg.message) {
+                break;
+            }
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {   //단축키 처리
+                TranslateMessage(&msg);     //키보드 입력 메시지 처리 담당
+                DispatchMessage(&msg);      //WndProc에서 전달된 메시지를 실제 윈도우에 전달
+            }
+        }
+        else {
+            CORE->Update();
+            CORE->Render();
+        }
+    }
+    CORE->Release();
 
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    /*while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-    }
+    }*/
 
     return (int) msg.wParam;
 }
@@ -109,7 +136,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(
        szWindowClass, 
        szTitle, 
-       WS_OVERLAPPEDWINDOW, //윈도우 스타일
+       WINSTYLE, //윈도우 스타일
        CW_USEDEFAULT, 
        0, 
        CW_USEDEFAULT, 
