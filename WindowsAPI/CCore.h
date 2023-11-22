@@ -6,7 +6,6 @@ class CCore : public SingleTon<CCore>
 private:
 	float m_fPointX;
 	float m_fPointY;
-	HDC m_hdc;
 
 	CCore();
 	virtual ~CCore();

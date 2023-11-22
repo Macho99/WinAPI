@@ -1,11 +1,12 @@
 #include "framework.h"
 #include "CCore.h"
 #include "WinAPI.h"
+
 #include "CTimeManager.h"
+#include "CRenderManager.h"
 
 CCore::CCore()
 {
-	this->m_hdc = 0;
 	m_fPointX = 100;
 	m_fPointY = 100;
 }
@@ -18,14 +19,13 @@ CCore::~CCore()
 void CCore::Init()
 {
 	TIME->Init();
-	m_hdc = GetDC(hWnd);
+	RENDER->Init();
 }
 
 void CCore::Release()
 {
 	TIME->Release();
-
-	ReleaseDC(hWnd, m_hdc);
+	RENDER->Release();
 }
 
 void CCore::Update()
@@ -49,8 +49,17 @@ void CCore::Update()
 
 void CCore::Render()
 {
-	Rectangle(m_hdc, m_fPointX - 50, m_fPointY - 50, m_fPointX + 50, m_fPointY + 50);
+	RENDER->BeginDraw();
+
+	RENDER->Rect(
+		m_fPointX - 50.f,
+		m_fPointY - 50.f,
+		m_fPointX + 50.f,
+		m_fPointY + 50.f
+	);
 
 	wstring fps = to_wstring(FPS);
-	TextOut(m_hdc, WINSIZEX - 50, 10, fps.c_str(), fps.size());
+	RENDER->Text(WINSIZEX - 80, 10, fps);
+
+	RENDER->EndDraw();
 }

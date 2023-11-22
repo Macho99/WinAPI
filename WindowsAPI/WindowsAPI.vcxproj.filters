@@ -45,6 +45,9 @@
     <ClInclude Include="CTimeManager.h">
       <Filter>소스 파일\Core</Filter>
     </ClInclude>
+    <ClInclude Include="CRenderManager.h">
+      <Filter>소스 파일\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -54,6 +57,9 @@
       <Filter>소스 파일\Core</Filter>
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
+      <Filter>소스 파일\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderManager.cpp">
       <Filter>소스 파일\Core</Filter>
     </ClCompile>
   </ItemGroup>
