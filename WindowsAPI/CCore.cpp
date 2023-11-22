@@ -1,13 +1,10 @@
 #include "framework.h"
 #include "CCore.h"
 #include "WinAPI.h"
-#include "Struct.h"
 #include "CTimeManager.h"
 
 CCore::CCore()
 {
-	this->hInst = 0;
-	this->hWnd = 0;
 	this->m_hdc = 0;
 	m_fPointX = 100;
 	m_fPointY = 100;
@@ -21,9 +18,6 @@ CCore::~CCore()
 void CCore::Init()
 {
 	TIME->Init();
-
-	this->hInst = hInst;
-	this->hWnd = hWnd;
 	m_hdc = GetDC(hWnd);
 }
 
@@ -32,14 +26,13 @@ void CCore::Release()
 	TIME->Release();
 
 	ReleaseDC(hWnd, m_hdc);
-
 }
 
 void CCore::Update()
 {
 	TIME->Update();
 
-	int moveDistance = 100 * DT;
+	float moveDistance = 100 * DT;
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
 		m_fPointX -= moveDistance;
 	}

@@ -7,8 +7,6 @@ private:
 	float m_fPointX;
 	float m_fPointY;
 	HDC m_hdc;
-	HINSTANCE hInst;
-	HWND hWnd;
 
 	CCore();
 	virtual ~CCore();
@@ -18,8 +16,6 @@ public:
 	void Release();
 	void Update();
 	void Render();
-	HINSTANCE GetHInst() { return hInst; }
-	HWND GetHWnd() { return hWnd; }
 };
 
 #define CORE	CCore::GetInstance()
