@@ -51,6 +51,16 @@ void CCore::Render()
 {
 	RENDER->BeginDraw();
 
+	RENDER->SetPen(PenType::Dash, RGB(255, 0, 0), 1);
+	RENDER->SetBrush(BrushType::Null, RGB(255, 255, 255));
+
+	RENDER->SetText(TextType::Center);
+	RENDER->Text(100, 100, L"여기가 100, 100 입니다");
+
+	RENDER->Line(100, 100, 500, 500);
+	RENDER->SetPen(PenType::Solid);
+	RENDER->Circle(300, 300, 220);
+
 	RENDER->Rect(
 		m_fPointX - 50.f,
 		m_fPointY - 50.f,
