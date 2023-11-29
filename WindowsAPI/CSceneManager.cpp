@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "WinAPI.h"
 
-#include "CSceneManager.h"
 #include "CScene.h"
 #include "CSceneTitle.h"
 #include "CSceneStage01.h"
+#include "CSceneManager.h"
 
 CSceneManager::CSceneManager()
 {
@@ -23,29 +23,29 @@ void CSceneManager::Init()
 	CScene* sceneStage01 = new CSceneStage01();
 	mapScene.insert(make_pair(GroupScene::Stage01, sceneStage01));
 
-	for (auto iter = mapScene.begin(); iter != mapScene.end(); iter++) {
-		iter->second->Init();
+	for (auto& pair : mapScene) {
+		pair.second->SceneInit();
 	}
 
 	curScene = sceneTitle;
-	curScene->Enter();
+	curScene->SceneEnter();
 }
 
 void CSceneManager::Update()
 {
-	curScene->Update();
+	curScene->SceneUpdate();
 }
 
 void CSceneManager::Render()
 {
-	curScene->Render();
+	curScene->SceneRender();
 }
 
 void CSceneManager::Release()
 {
-	for (auto iter = mapScene.begin(); iter != mapScene.end(); iter++) {
-		iter->second->Release();
-		delete iter->second;
+	for (auto& pair: mapScene) {
+		pair.second->SceneRelease();
+		delete pair.second;
 	}
 	mapScene.clear();
 }
@@ -58,7 +58,7 @@ CScene* CSceneManager::GetCurScene()
 
 void CSceneManager::ChangeScene(GroupScene scene)
 {
-	curScene->Exit();
+	curScene->SceneExit();
 	curScene = mapScene[scene];
-	curScene->Enter();
+	curScene->SceneEnter();
 }

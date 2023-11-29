@@ -31,6 +31,9 @@
     <Filter Include="소스 파일\Engine\Manager">
       <UniqueIdentifier>{a8d65f76-ac01-499c-a8c4-ab00ea33148b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\GameObject">
+      <UniqueIdentifier>{cd5e6a40-5c5b-45b7-8713-7c37c106e3c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -75,6 +78,15 @@
     <ClInclude Include="CSceneStage01.h">
       <Filter>소스 파일\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="CGameObject.h">
+      <Filter>소스 파일\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -103,6 +115,15 @@
     </ClCompile>
     <ClCompile Include="CSceneStage01.cpp">
       <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject.cpp">
+      <Filter>소스 파일\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
+      <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

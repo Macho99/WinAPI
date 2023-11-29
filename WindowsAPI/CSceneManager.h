@@ -1,5 +1,6 @@
 #pragma once
 
+enum class GroupScene;
 class CCore;
 class CScene;
 
@@ -25,5 +26,5 @@ public:
 	void ChangeScene(GroupScene scene);
 };
 
-#define SCENE		CSceneManager::GetInstance()
-
+#define SCENE			CSceneManager::GetInstance()
+#define ADDOBJECT(obj)	CSceneManager::GetInstance()->GetCurScene()->AddGameObject(obj)

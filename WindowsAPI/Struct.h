@@ -9,6 +9,13 @@ struct Vec2
 
 	Vec2(float x, float y) : x(x), y(y) {}
 
+	Vec2& Normalize() {
+		float size = sqrt(x * x + y * y);
+		x /= size;
+		y /= size;
+		return *this;
+	}
+
 	Vec2 operator+(const Vec2& other)
 	{
 		return Vec2(x + other.x, y + other.y);

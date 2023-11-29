@@ -17,9 +17,13 @@
 #include <chrono>
 #include <string>
 #include <map>
+#include <vector>
+#include <list>
+#include <cmath>
 
 using namespace std;
 
 //Util
 #include "SingleTon.h"
 #include <crtdbg.h>
+#include "Struct.h"
