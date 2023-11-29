@@ -5,6 +5,8 @@
 #include "CInputManager.h"
 #include "CRenderManager.h"
 #include "CSceneManager.h"
+#include "CScene.h"
+
 
 #include "CSceneStage01.h"
 

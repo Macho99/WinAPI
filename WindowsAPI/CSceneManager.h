@@ -7,8 +7,8 @@ class CSceneManager : public SingleTon<CSceneManager>
 {
 	friend SingleTon<CSceneManager>;
 	friend CCore;
-private:
 
+private:
 	map<GroupScene, CScene*> mapScene;
 	CScene* curScene;
 

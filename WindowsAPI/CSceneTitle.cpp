@@ -9,12 +9,12 @@
 
 CSceneTitle::CSceneTitle()
 {
-	//
+
 }
 
 CSceneTitle::~CSceneTitle()
 {
-	//
+
 }
 
 void CSceneTitle::Init()
@@ -27,7 +27,7 @@ void CSceneTitle::Enter()
 
 void CSceneTitle::Update()
 {
-	if (INPUT->GetButtonDown(VK_SPACE)) {
+	if (INPUT->GetButtonUp(VK_SPACE)) {
 		SCENE->ChangeScene(GroupScene::Stage01);
 	}
 }
@@ -35,7 +35,7 @@ void CSceneTitle::Update()
 void CSceneTitle::Render()
 {
 	RENDER->SetText(TextType::Center);
-	RENDER->Text(WINSIZEX, WINSIZEY, L"시작하려면 '스페이스바'를 누르세요..");
+	RENDER->Text(WINSIZEX * 0.5, WINSIZEY * 0.5, L"시작하려면 '스페이스바'를 누르세요..");
 }
 
 void CSceneTitle::Exit()

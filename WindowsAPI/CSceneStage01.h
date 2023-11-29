@@ -1,5 +1,5 @@
 #pragma once
-#include "CScene.h"
+
 class CSceneStage01 : public CScene
 {
 public:
