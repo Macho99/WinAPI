@@ -13,11 +13,23 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Core">
-      <UniqueIdentifier>{a9a9040e-491f-45fe-965e-576afe2d96dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Util">
       <UniqueIdentifier>{6e91cba2-b8c9-463f-a450-7fd36a074000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Asset">
+      <UniqueIdentifier>{fec37c22-bf91-48bb-8674-d5987370d6a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene">
+      <UniqueIdentifier>{29bf0a93-8c65-4b61-be3b-0d219b461d35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine">
+      <UniqueIdentifier>{3f4eaa85-3919-4cfd-88bc-6e3bfa595d96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Core">
+      <UniqueIdentifier>{a9a9040e-491f-45fe-965e-576afe2d96dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Manager">
+      <UniqueIdentifier>{a8d65f76-ac01-499c-a8c4-ab00ea33148b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,19 +46,34 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CCore.h">
-      <Filter>소스 파일\Core</Filter>
+      <Filter>소스 파일\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="SingleTon.h">
       <Filter>소스 파일\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Struct.h">
-      <Filter>소스 파일\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="CTimeManager.h">
-      <Filter>소스 파일\Core</Filter>
+    <ClInclude Include="CInputManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
     <ClInclude Include="CRenderManager.h">
-      <Filter>소스 파일\Core</Filter>
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>소스 파일\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>소스 파일\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneTitle.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneStage01.h">
+      <Filter>소스 파일\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -54,13 +81,28 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CCore.cpp">
-      <Filter>소스 파일\Core</Filter>
+      <Filter>소스 파일\Engine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="CTimeManager.cpp">
-      <Filter>소스 파일\Core</Filter>
+    <ClCompile Include="CInputManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
     <ClCompile Include="CRenderManager.cpp">
-      <Filter>소스 파일\Core</Filter>
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>소스 파일\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneTitle.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneStage01.cpp">
+      <Filter>소스 파일\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

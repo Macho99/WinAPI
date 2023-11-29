@@ -4,6 +4,7 @@
 
 #include "CTimeManager.h"
 #include "CRenderManager.h"
+#include "CInputManager.h"
 
 CCore::CCore()
 {
@@ -20,31 +21,22 @@ void CCore::Init()
 {
 	TIME->Init();
 	RENDER->Init();
+	INPUT->Init();
 }
 
 void CCore::Release()
 {
 	TIME->Release();
 	RENDER->Release();
+	INPUT->Init();
 }
 
 void CCore::Update()
 {
 	TIME->Update();
+	INPUT->Update();
 
-	float moveDistance = 100 * DT;
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		m_fPointX -= moveDistance;
-	}
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		m_fPointX += moveDistance;
-	}
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		m_fPointY -= moveDistance;
-	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		m_fPointY += moveDistance;
-	}
+
 }
 
 void CCore::Render()
@@ -60,7 +52,7 @@ void CCore::Render()
 	RENDER->Line(100, 100, 500, 500);
 	RENDER->SetPen(PenType::Solid);
 	RENDER->Circle(300, 300, 220);
-
+	
 	RENDER->Rect(
 		m_fPointX - 50.f,
 		m_fPointY - 50.f,

@@ -13,3 +13,10 @@ extern HWND hWnd;
 #define WINSIZEX	1280
 #define WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+
+enum class GroupScene {
+	Title,
+	Stage01,
+
+	Size,
+};
