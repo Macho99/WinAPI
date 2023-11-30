@@ -27,4 +27,3 @@ public:
 };
 
 #define SCENE			CSceneManager::GetInstance()
-#define ADDOBJECT(obj)	CSceneManager::GetInstance()->GetCurScene()->AddGameObject(obj)

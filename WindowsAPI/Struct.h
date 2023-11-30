@@ -10,10 +10,14 @@ struct Vec2
 	Vec2(float x, float y) : x(x), y(y) {}
 
 	Vec2& Normalize() {
-		float size = sqrt(x * x + y * y);
+		float size = GetLength();
 		x /= size;
 		y /= size;
 		return *this;
+	}
+
+	float GetLength() {
+		return sqrt(x * x + y * y);
 	}
 
 	Vec2 operator+(const Vec2& other)

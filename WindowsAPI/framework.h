@@ -19,6 +19,7 @@
 #include <map>
 #include <vector>
 #include <list>
+#include <queue>
 #include <cmath>
 
 using namespace std;
@@ -27,3 +28,4 @@ using namespace std;
 #include "SingleTon.h"
 #include <crtdbg.h>
 #include "Struct.h"
+#include "Logger.h"

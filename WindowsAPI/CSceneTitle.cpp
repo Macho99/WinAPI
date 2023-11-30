@@ -3,7 +3,7 @@
 
 #include "CRenderManager.h"
 #include "CInputManager.h"
-#include "CSceneManager.h"
+#include "CEventManager.h"
 
 #include "CSceneTitle.h"
 
@@ -28,7 +28,7 @@ void CSceneTitle::Enter()
 void CSceneTitle::Update()
 {
 	if (INPUT->GetButtonUp(VK_SPACE)) {
-		SCENE->ChangeScene(GroupScene::Stage01);
+		CHANGESCENE(GroupScene::Stage01);
 	}
 }
 

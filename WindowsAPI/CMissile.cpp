@@ -1,7 +1,9 @@
 #include "framework.h"
+#include "WinAPI.h"
 
 #include "CTimeManager.h"
 #include "CRenderManager.h"
+#include "CEventManager.h"
 
 #include "CMissile.h"
 
@@ -26,6 +28,10 @@ void CMissile::Update()
 	pos += dir * speed * DT;
 	//pos.x += direction.x * speed * DT;
 	//pos.y += direction.y * speed * DT;
+
+ 	if (pos.x < 0 || pos.x > WINSIZEX || pos.y < 0 || pos.y > WINSIZEY) {
+		DELETEOBJECT(this);
+	}
 }
 
 void CMissile::Render()

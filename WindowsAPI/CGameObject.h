@@ -1,10 +1,12 @@
 #pragma once
 
 class CScene;
+class CEventManager;
 
 class CGameObject
 {
 	friend CScene;
+	friend CEventManager;
 public:
 	CGameObject();
 	virtual ~CGameObject();
@@ -12,6 +14,16 @@ public:
 protected:
 	Vec2 pos;
 	Vec2 scale;
+
+private:
+	bool reserveDelete;
+	bool safeToDelete;
+	void SetReserveDelete();
+	void SetSafeToDelete();
+
+public:
+	bool GetReserveDelete();
+	bool GetSafeToDelete();
 
 public:
 	Vec2 GetPos();

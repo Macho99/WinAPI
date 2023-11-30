@@ -5,6 +5,7 @@
 #include "CTimeManager.h"
 #include "CRenderManager.h"
 #include "CSceneManager.h"
+#include "CEventManager.h"
 
 #include "CMissile.h"
 #include "CPlayer.h"
@@ -29,20 +30,20 @@ void CPlayer::Release()
 void CPlayer::Update()
 {
 	float moveDistance = speed * DT;
-	if (BUTTONSTAY(VK_LEFT)) {
+	if (BUTTONSTAY(VK_LEFT) || BUTTONSTAY('A')) {
 		pos.x -= moveDistance;
 	}
-	if (BUTTONSTAY(VK_RIGHT)) {
+	if (BUTTONSTAY(VK_RIGHT) || BUTTONSTAY('D')) {
 		pos.x += moveDistance;
 	}
-	if (BUTTONSTAY(VK_UP)) {
+	if (BUTTONSTAY(VK_UP) || BUTTONSTAY('W')) {
 		pos.y -= moveDistance;
 	}
-	if (BUTTONSTAY(VK_DOWN)) {
+	if (BUTTONSTAY(VK_DOWN) || BUTTONSTAY('S')) {
 		pos.y += moveDistance;
 	}
 
-	if (BUTTONDOWN(VK_SPACE)) {
+	if (BUTTONSTAY(VK_SPACE)) {
 		Shot();
 	}
 }

@@ -28,6 +28,7 @@ void CTimeManager::Update()
 	chrono::duration<float> elapsed = curTime - prevTime;
 	
 	m_fDT = elapsed.count();
+	if (m_fDT > 0.1f) m_fDT = 0.1f;
 	prevTime = curTime;
 
 	updateCount++;

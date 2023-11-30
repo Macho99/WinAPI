@@ -3,12 +3,34 @@
 
 CGameObject::CGameObject()
 {
+	reserveDelete = false;
+	safeToDelete = false;
 	pos = Vec2();
 	scale = Vec2();
 }
 
 CGameObject::~CGameObject()
 {
+}
+
+void CGameObject::SetReserveDelete()
+{
+	reserveDelete = true;
+}
+
+void CGameObject::SetSafeToDelete()
+{
+	safeToDelete = true;
+}
+
+bool CGameObject::GetSafeToDelete()
+{
+	return safeToDelete;
+}
+
+bool CGameObject::GetReserveDelete()
+{
+	return reserveDelete;
 }
 
 Vec2 CGameObject::GetPos()

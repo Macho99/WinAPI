@@ -4,8 +4,8 @@
 #include "CTimeManager.h"
 #include "CInputManager.h"
 #include "CRenderManager.h"
-#include "CSceneManager.h"
 #include "CScene.h"
+#include "CEventManager.h"
 #include "CPlayer.h"
 
 #include "CSceneStage01.h"
@@ -36,7 +36,7 @@ void CSceneStage01::Enter()
 void CSceneStage01::Update()
 {
 	if (BUTTONDOWN(VK_ESCAPE)) {
-		SCENE->ChangeScene(GroupScene::Title);
+		CHANGESCENE(GroupScene::Title);
 	}
 }
 
