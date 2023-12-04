@@ -20,3 +20,13 @@ enum class GroupScene {
 
 	Size,
 };
+
+enum class Layer {
+	Default,
+
+	Player,
+	Missile,
+	Monster,
+
+	Size,
+};

@@ -11,7 +11,7 @@ public:
 	virtual ~CScene();
 
 private:
-	list<CGameObject*> listObj;
+	list<CGameObject*> listObj[(int)Layer::Size];
 
 	void SceneInit();
 	void SceneRelease();

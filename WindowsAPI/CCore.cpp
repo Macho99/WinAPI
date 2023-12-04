@@ -7,6 +7,7 @@
 #include "CInputManager.h"
 #include "CSceneManager.h"
 #include "CEventManager.h"
+#include "CCollisionManager.h"
 
 CCore::CCore()
 {
@@ -25,6 +26,7 @@ void CCore::Init()
 	INPUT->Init();
 	SCENE->Init();
 	EVENT->Init();
+	COLLISION->Init();
 }
 
 void CCore::Release()
@@ -34,6 +36,7 @@ void CCore::Release()
 	INPUT->Release();
 	SCENE->Release();
 	EVENT->Release();
+	COLLISION->Release();
 }
 
 void CCore::Update()
@@ -44,6 +47,9 @@ void CCore::Update()
 	TIME->Update();
 	INPUT->Update();
 	SCENE->Update();
+
+	//게임 오브젝트들이 업데이트 된 후 충돌처리 진행
+	COLLISION->Update();
 }
 
 void CCore::Render()

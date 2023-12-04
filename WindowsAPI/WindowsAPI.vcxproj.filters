@@ -93,6 +93,9 @@
     <ClInclude Include="CEventManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -132,6 +135,9 @@
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CEventManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
   </ItemGroup>

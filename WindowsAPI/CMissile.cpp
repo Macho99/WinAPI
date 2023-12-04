@@ -12,6 +12,7 @@ CMissile::CMissile()
 	speed = 300;
 	size = Vec2(10, 10);
 	dir = Vec2(1, 0);
+	layer = Layer::Missile;
 }
 
 CMissile::~CMissile()

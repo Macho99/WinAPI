@@ -14,16 +14,17 @@ public:
 protected:
 	Vec2 pos;
 	Vec2 scale;
+	Layer layer;
 
 private:
 	bool reserveDelete;
 	bool safeToDelete;
 	void SetReserveDelete();
 	void SetSafeToDelete();
+	bool GetSafeToDelete();
 
 public:
 	bool GetReserveDelete();
-	bool GetSafeToDelete();
 
 public:
 	Vec2 GetPos();
@@ -32,6 +33,8 @@ public:
 	Vec2 GetScale();
 	void SetScale(Vec2 scale);
 	void SetScale(float x, float y);
+	Layer GetLayer();
+	void SetLayer(Layer layer);
 
 private:
 	virtual void Init() = 0;

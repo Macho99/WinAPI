@@ -3,11 +3,15 @@
 enum class GroupScene;
 class CCore;
 class CScene;
+class CCollisionManager;
+class CEventManager;
 
 class CSceneManager : public SingleTon<CSceneManager>
 {
 	friend SingleTon<CSceneManager>;
 	friend CCore;
+	friend CCollisionManager;
+	friend CEventManager;
 
 private:
 	map<GroupScene, CScene*> mapScene;

@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "WinAPI.h"
+
 #include "CGameObject.h"
 
 CGameObject::CGameObject()
@@ -7,6 +9,7 @@ CGameObject::CGameObject()
 	safeToDelete = false;
 	pos = Vec2();
 	scale = Vec2();
+	layer = Layer::Default;
 }
 
 CGameObject::~CGameObject()
@@ -63,4 +66,14 @@ void CGameObject::SetScale(float x, float y)
 {
 	this->scale.x = x;
 	this->scale.y = y;
+}
+
+Layer CGameObject::GetLayer()
+{
+	return layer;
+}
+
+void CGameObject::SetLayer(Layer layer)
+{
+	this->layer = layer;
 }

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "WinAPI.h"
 
 #include "CScene.h"
 #include "CInputManager.h"
@@ -12,6 +13,7 @@
 
 CPlayer::CPlayer() : size(100, 100), speed(200.f)
 {
+	layer = Layer::Player;
 }
 
 CPlayer::~CPlayer()
