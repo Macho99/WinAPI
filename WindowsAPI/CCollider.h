@@ -2,9 +2,11 @@
 #include "CComponent.h"
 
 class CGameObject;
+class CCollisionManager;
 
 class CCollider : public CComponent
 {
+	friend CCollisionManager;
 	friend CGameObject;
 public:
 	CCollider();

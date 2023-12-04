@@ -1,8 +1,12 @@
 #include "framework.h"
 #include "WinAPI.h"
-#include "CCollisionManager.h"
+
 #include "CScene.h"
 #include "CSceneManager.h"
+#include "CGameObject.h"
+#include "CCollider.h"
+
+#include "CCollisionManager.h"
 
 CCollisionManager::CCollisionManager()
 {
@@ -15,7 +19,7 @@ CCollisionManager::~CCollisionManager()
 
 void CCollisionManager::Init()
 {
-	CheckLayer(Layer::Missile, Layer::Monster);
+	CheckLayer(Layer::Player, Layer::Monster);
 }
 
 void CCollisionManager::Update()
@@ -29,13 +33,48 @@ void CCollisionManager::Update()
 	}
 }
 
-void CCollisionManager::Release()
-{
-}
-
 void CCollisionManager::CollisionUpdate(Layer left, Layer right)
 {
-	//CScene* curScene = 
+	CScene* curScene = SCENE->GetCurScene();
+	const list<CGameObject*>& leftListObj = curScene->listObj[(int)left];
+	const list<CGameObject*>& rightListObj = curScene->listObj[(int)right];
+
+	for (CGameObject* leftObj : leftListObj) {
+		if (nullptr == leftObj) continue;
+
+		for (CGameObject* rightObj : rightListObj) {
+			if (nullptr == rightObj) continue;
+			if (leftObj == rightObj) continue;
+			
+			CCollider* leftCollider = leftObj->GetCollider();
+			CCollider* rightCollider = rightObj->GetCollider();
+
+			if (IsCollision(leftCollider, rightCollider)) {
+				leftCollider->OnCollision(rightCollider);
+				rightCollider->OnCollision(leftCollider);
+			}
+		}
+	}
+}
+
+bool CCollisionManager::IsCollision(CCollider* leftCollider, CCollider* rightCollider)
+{
+	Vec2 leftPos, leftScale, rightPos, rightScale;
+	leftPos = leftCollider->GetPos();
+	leftScale = leftCollider->GetScale();
+
+	rightPos = rightCollider->GetPos();
+	rightScale = rightCollider->GetScale();
+
+	if (abs(leftPos.x - rightPos.x) < (leftScale.x + rightScale.x) * 0.5f
+		&& abs(leftPos.y - rightPos.y) < (leftScale.y + rightScale.y) * 0.5f) {
+		return true;
+	}
+	return false;
+}
+
+void CCollisionManager::Release()
+{
 }
 
 void CCollisionManager::CheckLayer(Layer left, Layer right)

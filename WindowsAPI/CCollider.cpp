@@ -79,5 +79,6 @@ void CCollider::PhysicsUpdate()
 
 void CCollider::OnCollision(CCollider* otherCollider)
 {
-	Logger::Debug(L"面倒 惯积");
+	//Logger::Debug(L"面倒 惯积");
+	GetOwner()
 }

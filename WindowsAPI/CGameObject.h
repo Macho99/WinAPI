@@ -4,10 +4,12 @@ class CScene;
 class CEventManager;
 class CComponent;
 class CCollider;
+class CCollisionManager;
 enum class Layer;
 
 class CGameObject
 {
+	friend CCollisionManager;
 	friend CScene;
 	friend CEventManager;
 public:
@@ -32,6 +34,7 @@ protected:
 	CCollider* GetCollider();
 	void AddCollider(Vec2 scale, Vec2 offset = Vec2());
 	void RemoveCollider();
+	virtual void OnCollision() = 0;
 
 private:
 	bool reserveDelete;

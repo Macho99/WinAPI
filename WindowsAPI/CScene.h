@@ -2,9 +2,11 @@
 
 class CSceneManager;
 class CGameObject;
+class CCollisionManager;
 
 class CScene
 {
+	friend CCollisionManager;
 	friend CSceneManager;
 public:
 	CScene();

@@ -34,6 +34,9 @@
     <Filter Include="소스 파일\GameObject">
       <UniqueIdentifier>{cd5e6a40-5c5b-45b7-8713-7c37c106e3c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Component">
+      <UniqueIdentifier>{b63ad7ed-f0e8-4e59-addc-72392225a2fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -96,6 +99,15 @@
     <ClInclude Include="CCollisionManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>소스 파일\Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CComponent.h">
+      <Filter>소스 파일\Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -139,6 +151,15 @@
     </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CComponent.cpp">
+      <Filter>소스 파일\Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>소스 파일\Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

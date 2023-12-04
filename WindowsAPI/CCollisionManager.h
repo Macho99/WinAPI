@@ -1,6 +1,7 @@
 #pragma once
 
 class CCore;
+class CCollider;
 
 class CCollisionManager: public SingleTon<CCollisionManager>
 {
@@ -20,6 +21,7 @@ private:
 
 private:
 	void CollisionUpdate(Layer left, Layer right);
+	bool IsCollision(CCollider* leftCollider, CCollider* rightCollider);
 
 	void CheckLayer(Layer left, Layer right);
 	void UnCheckLayer(Layer left, Layer right);
