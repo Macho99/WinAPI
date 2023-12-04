@@ -62,7 +62,7 @@ void CScene::SceneUpdate()
 			[](CGameObject* target)
 			{
 				if (target->GetSafeToDelete()) {
-					//target.Release();
+					target->GameObjectRelease();
 					delete target;
 					return true;
 				}
