@@ -23,6 +23,7 @@ CPlayer::~CPlayer()
 void CPlayer::Init()
 {
 	this->scale = size;
+	AddCollider(Vec2(90, 90), Vec2(0, 0));
 }
 
 void CPlayer::Release()

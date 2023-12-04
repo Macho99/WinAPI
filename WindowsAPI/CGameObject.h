@@ -2,6 +2,9 @@
 
 class CScene;
 class CEventManager;
+class CComponent;
+class CCollider;
+enum class Layer;
 
 class CGameObject
 {
@@ -15,6 +18,20 @@ protected:
 	Vec2 pos;
 	Vec2 scale;
 	Layer layer;
+
+private:
+	list<CComponent*> listComponent;
+
+	void AddComponent(CComponent* component);
+	void RemoveComponent(CComponent* component);
+
+private:
+	CCollider* collider;
+
+protected:
+	CCollider* GetCollider();
+	void AddCollider(Vec2 scale, Vec2 offset = Vec2());
+	void RemoveCollider();
 
 private:
 	bool reserveDelete;
@@ -35,6 +52,15 @@ public:
 	void SetScale(float x, float y);
 	Layer GetLayer();
 	void SetLayer(Layer layer);
+
+
+	//게임 오브젝트 부모 전용 함수
+private:
+	void GameObjectInit();
+	void GameObjectRelease();
+	void GameObjectUpdate();
+	void GameObjectPhysicsUpdate();
+	void GameObjectRender();
 
 private:
 	virtual void Init() = 0;

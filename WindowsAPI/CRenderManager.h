@@ -39,8 +39,8 @@ public:
 	void Circle(float x, float y, float radius);
 	void Text(float x, float y, wstring str);
 
-	void SetPen(PenType type, COLORREF color = RGB(0, 0, 0), int width = 1);
-	void SetBrush(BrushType type, COLORREF color = RGB(255, 255, 255));
+	void SetPen(PenType type = PenType::Solid, COLORREF color = RGB(0, 0, 0), int width = 1);
+	void SetBrush(BrushType type = BrushType::Null, COLORREF color = RGB(255, 255, 255));
 	void SetText(TextType type);
 };
 

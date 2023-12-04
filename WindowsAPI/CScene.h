@@ -16,9 +16,10 @@ private:
 	void SceneInit();
 	void SceneRelease();
 	void SceneEnter();
-	void SceneUpdate();
-	void SceneRender();
 	void SceneExit();
+	void SceneUpdate();
+	void ScenePhysicsUpdate();
+	void SceneRender();
 
 private:
 	virtual void Init() = 0;

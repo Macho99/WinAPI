@@ -35,7 +35,7 @@ void CCollisionManager::Release()
 
 void CCollisionManager::CollisionUpdate(Layer left, Layer right)
 {
-	CScene* curScene = 
+	//CScene* curScene = 
 }
 
 void CCollisionManager::CheckLayer(Layer left, Layer right)

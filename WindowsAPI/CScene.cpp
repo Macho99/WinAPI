@@ -19,7 +19,7 @@ void CScene::SceneInit()
 
 	for (int layer = 0; layer < (int)Layer::Size; layer++) {
 		for (CGameObject* gameObj : listObj[layer]) {
-			gameObj->Init();
+			gameObj->GameObjectInit();
 		}
 	}
 }
@@ -28,7 +28,7 @@ void CScene::SceneRelease()
 {
 	for (int layer = 0; layer < (int)Layer::Size; layer++) {
 		for (CGameObject* gameObj : listObj[layer]) {
-			gameObj->Release();
+			gameObj->GameObjectRelease();
 			delete gameObj;
 		}
 	}
@@ -50,7 +50,7 @@ void CScene::SceneUpdate()
 				gameObj->SetSafeToDelete();
 			}
 			else {
-				gameObj->Update();
+				gameObj->GameObjectUpdate();
 			}
 		}
 	}
@@ -73,12 +73,21 @@ void CScene::SceneUpdate()
 	}
 }
 
+void CScene::ScenePhysicsUpdate()
+{
+	for (int layer = 0; layer < (int)Layer::Size; layer++) {
+		for (CGameObject* gameObject : listObj[layer]) {
+			gameObject->GameObjectPhysicsUpdate();
+		}
+	}
+}
+
 void CScene::SceneRender()
 {
 	for (int layer = 0; layer < (int)Layer::Size; layer++) {
 		//만약 레이어가 카메라로 표현되지 않아야 하는 레이어라면 continue
 		for (CGameObject* gameObj : listObj[layer]) {
-			gameObj->Render();
+			gameObj->GameObjectRender();
 		}
 	}
 	Render();
@@ -92,5 +101,5 @@ void CScene::SceneExit()
 void CScene::AddGameObject(CGameObject* gameObj)
 {
 	listObj[(int) gameObj->GetLayer()].push_back(gameObj);
-	gameObj->Init();
+	gameObj->GameObjectInit();
 }

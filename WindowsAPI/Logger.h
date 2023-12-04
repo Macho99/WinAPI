@@ -34,12 +34,12 @@ public:
 
 	static void Info(const wstring& content)
 	{
-		Log(TEXT("[ Info]"), content.c_str());
+		Log(TEXT("[Info]"), content.c_str());
 	}
 
 	static void Warning(const wstring& content)
 	{
-		Log(TEXT("[ Warn]"), content.c_str());
+		Log(TEXT("[Warn]"), content.c_str());
 	}
 
 	static void Error(const wstring& content)

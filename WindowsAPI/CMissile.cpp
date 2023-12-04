@@ -22,6 +22,7 @@ CMissile::~CMissile()
 void CMissile::Init()
 {
 	scale = size;
+	AddCollider(Vec2(scale.x - 1, scale.y - 1));
 }
 
 void CMissile::Update()
@@ -42,6 +43,7 @@ void CMissile::Render()
 
 void CMissile::Release()
 {
+
 }
 
 void CMissile::SetDir(Vec2 dir)
