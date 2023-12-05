@@ -7,6 +7,7 @@
 
 CGameObject::CGameObject()
 {
+	name = L"";
 	reserveDelete = false;
 	safeToDelete = false;
 	pos = Vec2();
@@ -38,11 +39,12 @@ CCollider* CGameObject::GetCollider()
 	return collider;
 }
 
-void CGameObject::AddCollider(Vec2 scale, Vec2 offset)
+void CGameObject::AddCollider(ColliderType type, Vec2 scale, Vec2 offset)
 {
 	if (collider != nullptr) return;
 
 	collider = new CCollider();
+	collider->SetType(type);
 	collider->SetScale(scale);
 	collider->SetOffset(offset);
 	AddComponent(collider);
@@ -74,6 +76,16 @@ bool CGameObject::GetSafeToDelete()
 bool CGameObject::GetReserveDelete()
 {
 	return reserveDelete;
+}
+
+wstring CGameObject::GetName()
+{
+	return name;
+}
+
+void CGameObject::SetName(const wstring& name)
+{
+	this->name = name;
 }
 
 Vec2 CGameObject::GetPos()

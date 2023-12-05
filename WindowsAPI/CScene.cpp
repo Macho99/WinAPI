@@ -42,21 +42,7 @@ void CScene::SceneEnter()
 
 void CScene::SceneUpdate()
 {
-	for (int layer = 0; layer < (int)Layer::Size; layer++) {
-		for (CGameObject* gameObj : listObj[layer]) {
-			//오브젝트가 삭제 예정인경우 업데이트는 진행하지 않고
-			//삭제해도 괜찮은 상태로 전환
-			if (gameObj->GetReserveDelete()) {
-				gameObj->SetSafeToDelete();
-			}
-			else {
-				gameObj->GameObjectUpdate();
-			}
-		}
-	}
-
-	Update();
-
+	//씬 내에 삭제해도 안전한 게임 오브젝트를 삭제
 	for (int layer = 0; layer < (int)Layer::Size; layer++) {
 		listObj[layer].remove_if(
 			[](CGameObject* target)
@@ -71,6 +57,22 @@ void CScene::SceneUpdate()
 				}
 			});
 	}
+
+
+	for (int layer = 0; layer < (int)Layer::Size; layer++) {
+		for (CGameObject* gameObj : listObj[layer]) {
+			//오브젝트가 삭제 예정인경우 업데이트는 진행하지 않고
+			//삭제해도 괜찮은 상태로 전환
+			if (gameObj->GetReserveDelete()) {
+				gameObj->SetSafeToDelete();
+			}
+			else {
+				gameObj->GameObjectUpdate();
+			}
+		}
+	}
+
+	Update();
 }
 
 void CScene::ScenePhysicsUpdate()

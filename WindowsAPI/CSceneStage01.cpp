@@ -29,8 +29,16 @@ void CSceneStage01::Init()
 	AddGameObject(monster);
 }
 
+
 void CSceneStage01::Release()
 {
+}
+
+void CSceneStage01::AddMonster()
+{
+	CMonster* monster = new CMonster();
+	monster->SetPos(500, 500);
+	AddGameObject(monster);
 }
 
 void CSceneStage01::Enter()
@@ -41,6 +49,9 @@ void CSceneStage01::Update()
 {
 	if (BUTTONDOWN(VK_ESCAPE)) {
 		CHANGESCENE(GroupScene::Title);
+	}
+	if (BUTTONDOWN('R')) {
+		AddMonster();
 	}
 }
 

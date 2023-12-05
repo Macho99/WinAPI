@@ -5,10 +5,11 @@
 #include "CRenderManager.h"
 #include "CEventManager.h"
 
+#include "CCollider.h"
 #include "CMissile.h"
-
 CMissile::CMissile()
 {
+	name = L"πÃªÁ¿œ";
 	speed = 300;
 	size = Vec2(10, 10);
 	dir = Vec2(1, 0);
@@ -22,7 +23,7 @@ CMissile::~CMissile()
 void CMissile::Init()
 {
 	scale = size;
-	AddCollider(Vec2(scale.x - 1, scale.y - 1));
+	AddCollider(ColliderType::Circle, Vec2(scale.x - 3, scale.y - 3));
 }
 
 void CMissile::Update()
@@ -44,6 +45,11 @@ void CMissile::Render()
 void CMissile::Release()
 {
 
+}
+
+void CMissile::OnCollisionEnter(CCollider* otherCollider)
+{
+	DELETEOBJECT(this);
 }
 
 void CMissile::SetDir(Vec2 dir)

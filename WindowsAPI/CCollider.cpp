@@ -3,11 +3,16 @@
 #include "CGameObject.h"
 #include "CRenderManager.h"
 
+UINT CCollider::staticID = 0;
+
 CCollider::CCollider()
 {
+	ID = staticID++;
 	pos = Vec2();
 	offset = Vec2();
 	scale = Vec2();
+	collisionCount = 0;
+	type = ColliderType::Rect;
 }
 
 CCollider::~CCollider()
@@ -29,14 +34,29 @@ void CCollider::SetScale(Vec2 scale)
 	this->scale = scale;
 }
 
+void CCollider::SetType(ColliderType type)
+{
+	this->type = type;
+}
+
 Vec2 CCollider::GetPos()
 {
 	return pos;
 }
 
+UINT CCollider::GetID()
+{
+	return ID;
+}
+
 Vec2 CCollider::GetOffset()
 {
 	return offset;
+}
+
+wstring CCollider::GetName()
+{
+	return GetOwner()->GetName();
 }
 
 Vec2 CCollider::GetScale()
@@ -54,18 +74,37 @@ void CCollider::Release()
 
 void CCollider::Render()
 {
-	RENDER->SetPen(PenType::Dot, RGB(0,255,0));
+	if (collisionCount > 0) {
+		RENDER->SetPen(PenType::Solid, RGB(0,255,0));
+	}
+	else {
+		RENDER->SetPen(PenType::Dot);
+	}
 	RENDER->SetBrush(BrushType::Null);
 
-	RENDER->Rect(
-		pos.x - scale.x * 0.5f,
-		pos.y - scale.y * 0.5f,
-		pos.x + scale.x * 0.5f,
-		pos.y + scale.y * 0.5f
-	);
+	if (ColliderType::Rect == type) {
+		RENDER->Rect(
+			pos.x - scale.x * 0.5f,
+			pos.y - scale.y * 0.5f,
+			pos.x + scale.x * 0.5f,
+			pos.y + scale.y * 0.5f
+		);
+	}
+	else if (ColliderType::Circle == type) {
+		RENDER->Circle(
+			pos.x,
+			pos.y,
+			scale.x
+		);
+	}
 
 	RENDER->SetPen();
 	RENDER->SetBrush();
+}
+
+ColliderType CCollider::GetType()
+{
+	return type;
 }
 
 void CCollider::Update()
@@ -77,8 +116,19 @@ void CCollider::PhysicsUpdate()
 	pos = GetOwner()->GetPos() + offset;
 }
 
-void CCollider::OnCollision(CCollider* otherCollider)
+void CCollider::OnCollisionEnter(CCollider* otherCollider)
 {
-	//Logger::Debug(L"충돌 발생");
-	GetOwner()
+	collisionCount++;
+	GetOwner()->OnCollisionEnter(otherCollider);
+}
+
+void CCollider::OnCollisionStay(CCollider* otherCollider)
+{
+	GetOwner()->OnCollisionStay(otherCollider);
+}
+
+void CCollider::OnCollisionExit(CCollider* otherCollider)
+{
+	collisionCount--;
+	GetOwner()->OnCollisionExit(otherCollider);
 }

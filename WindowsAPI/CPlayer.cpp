@@ -8,11 +8,13 @@
 #include "CSceneManager.h"
 #include "CEventManager.h"
 
+#include "CCollider.h"
 #include "CMissile.h"
 #include "CPlayer.h"
 
 CPlayer::CPlayer() : size(100, 100), speed(200.f)
 {
+	name = L"플레이어";
 	layer = Layer::Player;
 }
 
@@ -23,7 +25,7 @@ CPlayer::~CPlayer()
 void CPlayer::Init()
 {
 	this->scale = size;
-	AddCollider(Vec2(90, 90), Vec2(0, 0));
+	AddCollider(ColliderType::Rect, Vec2(80, 80), Vec2(0, 0));
 }
 
 void CPlayer::Release()

@@ -6,9 +6,11 @@ class CComponent;
 class CCollider;
 class CCollisionManager;
 enum class Layer;
+enum class ColliderType;
 
 class CGameObject
 {
+	friend CCollider;
 	friend CCollisionManager;
 	friend CScene;
 	friend CEventManager;
@@ -17,6 +19,7 @@ public:
 	virtual ~CGameObject();
 
 protected:
+	wstring name;
 	Vec2 pos;
 	Vec2 scale;
 	Layer layer;
@@ -32,9 +35,11 @@ private:
 
 protected:
 	CCollider* GetCollider();
-	void AddCollider(Vec2 scale, Vec2 offset = Vec2());
+	void AddCollider(ColliderType type, Vec2 scale, Vec2 offset = Vec2());
 	void RemoveCollider();
-	virtual void OnCollision() = 0;
+	virtual void OnCollisionEnter(CCollider* otherCollider) {};
+	virtual void OnCollisionStay(CCollider* otherCollider) {};
+	virtual void OnCollisionExit(CCollider* otherCollider) {};
 
 private:
 	bool reserveDelete;
@@ -47,6 +52,8 @@ public:
 	bool GetReserveDelete();
 
 public:
+	wstring GetName();
+	void SetName(const wstring& name);
 	Vec2 GetPos();
 	void SetPos(Vec2 pos);
 	void SetPos(float x, float y);

@@ -13,5 +13,7 @@ private:
 	void Render() override;
 	void Exit() override;
 	void Release() override;
+
+	void AddMonster();
 };
 

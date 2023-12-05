@@ -17,6 +17,9 @@ private:
 	void Render() override;
 	void Release() override;
 
+protected:
+	void OnCollisionEnter(CCollider* otherCollider) override;
+
 public:
 	void SetDir(Vec2 dir);
 };
