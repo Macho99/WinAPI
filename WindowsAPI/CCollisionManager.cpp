@@ -170,18 +170,25 @@ bool CCollisionManager::RectCircleCollision(
 
 	//원의 중심이 사각형의 위아래에 있을때
 	if(leftX <= circlePos.x && circlePos.x <= rightX){
-		if (pow(circlePos.x - rectPos.x, 2) + pow(circlePos.y - rectPos.y, 2)
+		if (pow(circlePos.y - rectPos.y, 2)
 			< pow(circleRadios + rectScale.y * 0.5f, 2))
 			return true;
 	}
 	//원의 중심이 사각형의 좌우에 있을 때
 	else if (topY <= circlePos.y && circlePos.y <= bottomY) {
-		if (pow(circlePos.x - rectPos.x, 2) + pow(circlePos.y - rectPos.y, 2)
+		if (pow(circlePos.x - rectPos.x, 2)
 			< pow(circleRadios + rectScale.x * 0.5f, 2))
 			return true;
 	}
+	//원의 중심이 사각형 모서리쪽에 있을 때
 	else {
-		//TODO: 여기부터
+		float pointX = (circlePos.x < rectPos.x) ? leftX : rightX;
+		float pointY = (circlePos.y < rectPos.y) ? topY : bottomY;
+
+		if (pow(pointX - circlePos.x, 2) + pow(pointY - circlePos.y, 2)
+			< pow(circleRadios, 2)) {
+			return true;
+		}
 	}
 	return false;
 }
