@@ -108,6 +108,12 @@
     <ClInclude Include="CMonster.h">
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CBall.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CWall.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -159,6 +165,12 @@
       <Filter>소스 파일\Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CBall.cpp">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CWall.cpp">
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
   </ItemGroup>

@@ -20,8 +20,13 @@ CCollisionManager::~CCollisionManager()
 void CCollisionManager::Init()
 {
 	// TODO : 충돌할 레이어 지정
-	CheckLayer(Layer::Player, Layer::Monster);
-	CheckLayer(Layer::Missile, Layer::Monster);
+	//CheckLayer(Layer::Player, Layer::Monster);
+	//CheckLayer(Layer::Missile, Layer::Monster);
+	CheckLayer(Layer::Player, Layer::Ball);
+	CheckLayer(Layer::Ball, Layer::HorizonWall);
+	CheckLayer(Layer::Ball, Layer::VerticalWall);
+	CheckLayer(Layer::Player, Layer::HorizonWall);
+	CheckLayer(Layer::Player, Layer::VerticalWall);
 }
 
 void CCollisionManager::Update()
@@ -140,6 +145,7 @@ bool CCollisionManager::IsCollision(CCollider* leftCollider, CCollider* rightCol
 			leftCollider->GetScale().x
 		);
 	}
+	return false;
 }
 
 bool CCollisionManager::RectCollision(Vec2 leftPos, Vec2 leftScale, Vec2 rightPos, Vec2 rightScale)

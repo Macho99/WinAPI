@@ -12,20 +12,26 @@
 #include "CMissile.h"
 #include "CPlayer.h"
 
-CPlayer::CPlayer() : size(100, 100), speed(200.f)
+
+CPlayer::CPlayer(Vec2 size, float speed)
 {
 	name = L"플레이어";
 	layer = Layer::Player;
+	this->size = size;
+	this->speed = speed;
+	this->scale = size;
+	prevPos = Vec2();
 }
 
 CPlayer::~CPlayer()
 {
+
 }
 
 void CPlayer::Init()
 {
-	this->scale = size;
-	AddCollider(ColliderType::Rect, Vec2(80, 80), Vec2(0, 0));
+	AddCollider(ColliderType::Rect, size, Vec2(0, 0));
+	prevPos = pos;
 }
 
 void CPlayer::Release()
@@ -34,22 +40,40 @@ void CPlayer::Release()
 
 void CPlayer::Update()
 {
-	float moveDistance = speed * DT;
-	if (BUTTONSTAY(VK_LEFT) || BUTTONSTAY('A')) {
-		pos.x -= moveDistance;
-	}
-	if (BUTTONSTAY(VK_RIGHT) || BUTTONSTAY('D')) {
-		pos.x += moveDistance;
-	}
-	if (BUTTONSTAY(VK_UP) || BUTTONSTAY('W')) {
-		pos.y -= moveDistance;
-	}
-	if (BUTTONSTAY(VK_DOWN) || BUTTONSTAY('S')) {
-		pos.y += moveDistance;
-	}
-
 	if (BUTTONSTAY(VK_SPACE)) {
 		Shot();
+	}
+
+	Vec2 dir = Vec2(0, 0);
+	if (BUTTONSTAY(VK_LEFT) || BUTTONSTAY('A')) {
+		dir.x -= 1.f;
+	}
+	if (BUTTONSTAY(VK_RIGHT) || BUTTONSTAY('D')) {
+		dir.x += 1.f;
+	}
+	if (BUTTONSTAY(VK_UP) || BUTTONSTAY('W')) {
+		dir.y -= 1.f;
+	}
+	if (BUTTONSTAY(VK_DOWN) || BUTTONSTAY('S')) {
+		dir.y += 1.f;
+	}
+
+	if (dir.x != 0 && dir.y != 0) {
+		dir /= 1.414f;
+	}
+	pos += dir * speed * DT;
+
+	if (pos.x < 0) {
+		pos.x = 0;
+	}
+	if (pos.x > WINSIZEX) {
+		pos.x = WINSIZEX;
+	}
+	if (pos.y < 0) {
+		pos.y = 0;
+	}
+	if (pos.y > WINSIZEY) {
+		pos.y = WINSIZEY;
 	}
 }
 

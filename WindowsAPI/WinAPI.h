@@ -26,7 +26,10 @@ enum class Layer {
 
 	Player,
 	Missile,
+	Ball,
 	Monster,
+	VerticalWall,
+	HorizonWall,
 
 	Size,
 };

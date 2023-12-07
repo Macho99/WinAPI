@@ -75,12 +75,14 @@ void CCollider::Release()
 void CCollider::Render()
 {
 	if (collisionCount > 0) {
-		RENDER->SetPen(PenType::Solid, RGB(0,255,0));
+		//RENDER->SetPen(PenType::Solid, RGB(0,255,0));
+		RENDER->SetBrush(BrushType::Solid, RGB(0, 0, 0));
 	}
 	else {
-		RENDER->SetPen(PenType::Dot);
+		//RENDER->SetPen(PenType::Dot);
+		RENDER->SetBrush(BrushType::Null);
 	}
-	RENDER->SetBrush(BrushType::Null);
+
 
 	if (ColliderType::Rect == type) {
 		RENDER->Rect(

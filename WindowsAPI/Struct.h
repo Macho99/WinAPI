@@ -11,6 +11,9 @@ struct Vec2
 
 	Vec2& Normalize() {
 		float size = GetLength();
+		if (size == 0) {
+			return *this;
+		}
 		x /= size;
 		y /= size;
 		return *this;
