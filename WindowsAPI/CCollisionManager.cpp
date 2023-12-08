@@ -140,6 +140,8 @@ bool CCollisionManager::IsCollision(CCollider* leftCollider, CCollider* rightCol
 			leftCollider->GetScale().x
 		);
 	}
+
+	return false;
 }
 
 bool CCollisionManager::RectCollision(Vec2 leftPos, Vec2 leftScale, Vec2 rightPos, Vec2 rightScale)

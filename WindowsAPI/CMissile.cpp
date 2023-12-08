@@ -54,5 +54,5 @@ void CMissile::OnCollisionEnter(CCollider* otherCollider)
 
 void CMissile::SetDir(Vec2 dir)
 {
-	this->dir = dir.Normalize();
+	this->dir = dir.Normalized();
 }
