@@ -16,7 +16,6 @@ public:
 	void Render();
 	
 	bool GetGameover();
-private:
 	void SetGameover();
 };
 

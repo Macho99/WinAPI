@@ -39,7 +39,9 @@ void CMissile::Update()
 
 void CMissile::Render()
 {
+	RENDER->SetBrush(BrushType::Solid, RGB(255, 0, 0));
 	RENDER->Circle(pos.x, pos.y, scale.x);
+	RENDER->SetBrush();
 }
 
 void CMissile::Release()

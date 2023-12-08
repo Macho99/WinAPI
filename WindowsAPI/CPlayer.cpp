@@ -16,7 +16,7 @@
 
 CPlayer::CPlayer(Vec2 size, float speed)
 {
-	hp = 10;
+	hp = 5;
 	name = L"플레이어";
 	layer = Layer::Player;
 	this->size = size;
@@ -44,8 +44,8 @@ void CPlayer::Release()
 
 void CPlayer::Update()
 {
-	if (BUTTONSTAY(VK_SPACE)) {
-		Shot();
+	if (BUTTONDOWN(VK_SPACE)) {
+		//Shot();
 	}
 	Move();
 }
@@ -108,9 +108,9 @@ void CPlayer::TakeDamage(int damage)
 {
 	hp -= damage;
 
-	if (hp < 0) {
+	if (hp <= 0) {
 		hp = 0;
-		TIME->TimePause();
+		EVENT->EventChangeScene(GroupScene::Gameover);
 	}
 }
 

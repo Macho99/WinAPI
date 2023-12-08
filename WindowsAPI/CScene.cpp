@@ -21,7 +21,7 @@ list<CGameObject*>* CScene::GetListObj()
 void CScene::SetListObj(list<CGameObject*>* listObj)
 {
 	for (int i = 0; i < (int)Layer::Size; i++) {
-		//깊은 복사는 오버헤드상 하지 않음
+		//깊은 복사 생략
 		this->listObj[i] = listObj[i];
 	}
 }

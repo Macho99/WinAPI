@@ -6,7 +6,7 @@ public:
 	CSceneStage01();
 	virtual ~CSceneStage01();
 
-	const float ballPeriod = 5.f;
+	const float ballPeriod = 3.f;
 
 	random_device rd;
 	uniform_real_distribution<float> dirDist;

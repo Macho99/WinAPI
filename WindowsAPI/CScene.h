@@ -22,7 +22,7 @@ protected:
 
 private:
 	void SceneInit();
-	void SceneRelease();
+	virtual void SceneRelease();	// TODO : SetListObj()를 호출하는 씬은 이걸 재정의할것
 	void SceneEnter();
 	void SceneExit();
 	void SceneUpdate();

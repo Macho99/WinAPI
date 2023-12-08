@@ -12,11 +12,14 @@
 #include "CMonster.h"
 #include "CBall.h"
 #include "CWall.h"
+#include "CGameManager.h"
 
 #include "CSceneStage01.h"
 
 CSceneStage01::CSceneStage01()
 {
+	currentTime = 0.f;
+	ballTime = 0.f;
 }
 
 CSceneStage01::~CSceneStage01()
@@ -33,6 +36,7 @@ void CSceneStage01::Init()
 
 	currentTime = 0.f;
 	ballTime = 0.f;
+	CGameManager::GetInstance()->SetSurviveTime(0.f);
 
 	CPlayer* player = new CPlayer();
 	player->SetPos(WINSIZEX * 0.5f, WINSIZEY * 0.5f);
@@ -46,6 +50,8 @@ void CSceneStage01::Init()
 	AddGameObject(leftWall);
  	AddGameObject(rightWall);
 
+	AddBall();
+	AddBall();
 	AddBall();
 	AddBall();
 	AddBall();
@@ -80,6 +86,7 @@ void CSceneStage01::Update()
 	float dt = DT;
 	currentTime += dt;
 	ballTime += dt;
+	CGameManager::GetInstance()->SetSurviveTime(currentTime);
 
 	if (ballTime > ballPeriod) {
 		ballTime = 0;

@@ -50,6 +50,9 @@ void CBall::OnCollisionEnter(CCollider* otherCollider)
 	case Layer::HorizonWall:
 		dir.y = -dir.y;
 		break;
+	case Layer::Missile:
+		DELETEOBJECT(this);
+		break;
 	default:
 		break;
 	}

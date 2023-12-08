@@ -169,6 +169,8 @@ void CRenderManager::SetBrush(BrushType type, COLORREF color)
 		hBrush = CreateSolidBrush(color);
 		break;
 	}
+	int bitsPerPixel = GetDeviceCaps(m_hdc, BITSPIXEL);
+	bitsPerPixel;
 }
 
 void CRenderManager::SetText(TextType type)
