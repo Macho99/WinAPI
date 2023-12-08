@@ -4,9 +4,10 @@
 CTimeManager::CTimeManager()
 {
 	m_uiFPS = 1;
-	m_fDT = 1;
+	m_fDT = 1.f;
 	updateCount = 0;
 	updateOneSecond = 0;
+	timeScale = 1.f;
 
 	prevTime = {};
 	curTime = {};
@@ -53,4 +54,27 @@ UINT CTimeManager::GetFPS()
 float CTimeManager::GetDT()
 {
 	return m_fDT;
+}
+
+float CTimeManager::GetScaledDT()
+{
+	return m_fDT * timeScale;
+}
+
+void CTimeManager::TimePause()
+{
+	timeScale = 0.f;
+}
+
+void CTimeManager::TimeRestart()
+{
+	timeScale = 1.f;
+}
+
+bool CTimeManager::IsTimeStop()
+{
+	if (timeScale > 0.1f) {
+		return false;
+	}
+	return true;
 }

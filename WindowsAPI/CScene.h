@@ -15,6 +15,12 @@ public:
 private:
 	list<CGameObject*> listObj[(int)Layer::Size];
 
+public:
+	list<CGameObject*>* GetListObj();
+protected:
+	void SetListObj(list<CGameObject*>* listObj);
+
+private:
 	void SceneInit();
 	void SceneRelease();
 	void SceneEnter();
@@ -27,9 +33,9 @@ private:
 	virtual void Init() = 0;
 	virtual void Release() = 0;
 	virtual void Enter() = 0;
+	virtual void Exit() = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
-	virtual void Exit() = 0;
 
 public:
 	void AddGameObject(CGameObject* gameObj);

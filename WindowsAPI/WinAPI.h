@@ -17,6 +17,7 @@ extern HWND hWnd;
 enum class GroupScene {
 	Title,
 	Stage01,
+	Gameover,
 
 	Size,
 };

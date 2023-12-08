@@ -16,6 +16,7 @@ class CSceneManager : public SingleTon<CSceneManager>
 private:
 	map<GroupScene, CScene*> mapScene;
 	CScene* curScene;
+	CScene* prevScene;
 
 	CSceneManager();
 	virtual ~CSceneManager();
@@ -26,8 +27,10 @@ private:
 	void Release();
 
 public:
+	CScene* GetPrevScene();
 	CScene* GetCurScene();
 	void ChangeScene(GroupScene scene);
+	void InitScene(GroupScene scene);
 };
 
 #define SCENE			CSceneManager::GetInstance()

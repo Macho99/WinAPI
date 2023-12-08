@@ -25,8 +25,6 @@ void CCollisionManager::Init()
 	CheckLayer(Layer::Player, Layer::Ball);
 	CheckLayer(Layer::Ball, Layer::HorizonWall);
 	CheckLayer(Layer::Ball, Layer::VerticalWall);
-	CheckLayer(Layer::Player, Layer::HorizonWall);
-	CheckLayer(Layer::Player, Layer::VerticalWall);
 }
 
 void CCollisionManager::Update()

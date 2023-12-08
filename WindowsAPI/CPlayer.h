@@ -7,6 +7,7 @@ public:
 	virtual ~CPlayer();
 
 private:
+	int hp;
 	Vec2 prevPos;
 	Vec2 size;
 	float speed;
@@ -17,5 +18,9 @@ private:
 	void Update() override;
 	void Render() override;
 
+	void OnCollisionEnter(CCollider* otherCollider) override;
+
+	void Move();
+	void TakeDamage(int damage);
 	void Shot();
 };

@@ -8,7 +8,7 @@ CWall::CWall(TypeWall type)
 {
 	this->type = type;
 	int offset = 5;
-	int thickness = 100;
+	int thickness = 5;
 	switch (type)
 	{
 	case TypeWall::Top:

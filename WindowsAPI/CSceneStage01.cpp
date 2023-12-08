@@ -3,6 +3,8 @@
 
 #include "CTimeManager.h"
 #include "CInputManager.h"
+#include "CSceneManager.h"
+#include "CScene.h"
 #include "CRenderManager.h"
 #include "CScene.h"
 #include "CEventManager.h"
@@ -23,12 +25,18 @@ CSceneStage01::~CSceneStage01()
 
 void CSceneStage01::Init()
 {
+	//랜덤 엔진 초기화
+	mt19937 mt(rd());
+	dirDist = uniform_real_distribution<float>(-1.f, 1.f);
+	speedDist = uniform_real_distribution<float>(200.f, 500.f);
+	sizeDist = uniform_real_distribution<float>(5.f, 30.f);
+
+	currentTime = 0.f;
+	ballTime = 0.f;
+
 	CPlayer* player = new CPlayer();
 	player->SetPos(WINSIZEX * 0.5f, WINSIZEY * 0.5f);
 	AddGameObject(player);
-	CBall* ball = new CBall(Vec2(30,30), 100.f, Vec2(1,-1));
-	ball->SetPos(500.f, 200.f);
-	AddGameObject(ball);
 	CWall* topWall = new CWall(TypeWall::Top);
 	CWall* bottomWall = new CWall(TypeWall::Bottom);
 	CWall* leftWall = new CWall(TypeWall::Left);
@@ -37,6 +45,10 @@ void CSceneStage01::Init()
 	AddGameObject(bottomWall);
 	AddGameObject(leftWall);
  	AddGameObject(rightWall);
+
+	AddBall();
+	AddBall();
+	AddBall();
 }
 
 
@@ -51,22 +63,42 @@ void CSceneStage01::AddMonster()
 	AddGameObject(monster);
 }
 
+void CSceneStage01::AddBall()
+{
+	float size = sizeDist(rd);
+	CBall* ball = new CBall(Vec2(size, size), speedDist(rd), Vec2(dirDist(rd), dirDist(rd)));
+	ball->SetPos(100.f, 100.f);
+	AddGameObject(ball);
+}
+
 void CSceneStage01::Enter()
 {
 }
 
 void CSceneStage01::Update()
 {
+	float dt = DT;
+	currentTime += dt;
+	ballTime += dt;
+
+	if (ballTime > ballPeriod) {
+		ballTime = 0;
+		AddBall();
+	}
+
 	if (BUTTONDOWN(VK_ESCAPE)) {
+		SCENE->InitScene(GroupScene::Stage01);
 		CHANGESCENE(GroupScene::Title);
 	}
 	if (BUTTONDOWN('R')) {
-		AddMonster();
+		AddBall();
 	}
 }
 
 void CSceneStage01::Render()
 {
+	RENDER->Text(WINSIZEX * 0.5f, 50, to_wstring(currentTime));
+	//RENDER->Text(100, 100, to_wstring(INPUT->GetMousePos().x) + L", " + to_wstring(INPUT->GetMousePos().y));
 }
 
 void CSceneStage01::Exit()

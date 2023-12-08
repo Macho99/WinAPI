@@ -59,7 +59,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     //게임 메시지 루프입니다:
     MSG msg;
-    while (true) {
+    while (!CORE->GetGameover()) {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
             //메시지 처리
             if (WM_QUIT == msg.message) {
@@ -138,10 +138,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
        szWindowClass, 
        szTitle, 
        WINSTYLE, //윈도우 스타일
-       500,
-       500,
-       WINSIZEX,
-       WINSIZEY,
+       0,
+       0,
+       WINSIZEX + 16,
+       WINSIZEY + 38,
        nullptr, 
        nullptr, 
        hInstance, 

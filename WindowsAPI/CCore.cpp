@@ -11,7 +11,7 @@
 
 CCore::CCore()
 {
-
+	gameover = false;
 }
 
 CCore::~CCore()
@@ -62,4 +62,14 @@ void CCore::Render()
 	RENDER->Text(WINSIZEX - 80, 10, fps);
 
 	RENDER->EndDraw();
+}
+
+bool CCore::GetGameover()
+{
+	return gameover;
+}
+
+void CCore::SetGameover()
+{
+	gameover = true;
 }

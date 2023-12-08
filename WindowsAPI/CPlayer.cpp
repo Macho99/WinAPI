@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "WinAPI.h"
 
+#include "CCore.h"
 #include "CScene.h"
 #include "CInputManager.h"
 #include "CTimeManager.h"
@@ -15,6 +16,7 @@
 
 CPlayer::CPlayer(Vec2 size, float speed)
 {
+	hp = 10;
 	name = L"플레이어";
 	layer = Layer::Player;
 	this->size = size;
@@ -38,12 +40,37 @@ void CPlayer::Release()
 {
 }
 
+
+
 void CPlayer::Update()
 {
 	if (BUTTONSTAY(VK_SPACE)) {
 		Shot();
 	}
+	Move();
+}
 
+void CPlayer::Render()
+{
+	RENDER->Rect(
+		pos.x - scale.x * 0.5f,
+		pos.y - scale.y * 0.5f,
+		pos.x + scale.x * 0.5f,
+		pos.y + scale.y * 0.5f
+		);
+	RENDER->SetText(TextType::Center);
+	RENDER->Text(pos.x, pos.y - scale.y * 0.2f, to_wstring(hp));
+}
+
+void CPlayer::OnCollisionEnter(CCollider* otherCollider)
+{
+	if (otherCollider->GetOwner()->GetLayer() == Layer::Ball) {
+		TakeDamage(1);
+	}
+}
+
+void CPlayer::Move()
+{
 	Vec2 dir = Vec2(0, 0);
 	if (BUTTONSTAY(VK_LEFT) || BUTTONSTAY('A')) {
 		dir.x -= 1.f;
@@ -63,28 +90,28 @@ void CPlayer::Update()
 	}
 	pos += dir * speed * DT;
 
-	if (pos.x < 0) {
-		pos.x = 0;
+	if (pos.x < scale.x * 0.5f) {
+		pos.x = scale.x * 0.5f;
 	}
-	if (pos.x > WINSIZEX) {
-		pos.x = WINSIZEX;
+	if (pos.x > WINSIZEX - scale.x * 0.5f) {
+		pos.x = WINSIZEX - scale.x * 0.5f;
 	}
-	if (pos.y < 0) {
-		pos.y = 0;
+	if (pos.y < scale.y * 0.5f) {
+		pos.y = scale.y * 0.5f;
 	}
-	if (pos.y > WINSIZEY) {
-		pos.y = WINSIZEY;
+	if (pos.y > WINSIZEY - scale.y * 0.5f) {
+		pos.y = WINSIZEY - scale.y * 0.5f;
 	}
 }
 
-void CPlayer::Render()
+void CPlayer::TakeDamage(int damage)
 {
-	RENDER->Rect(
-		pos.x - scale.x * 0.5f,
-		pos.y - scale.y * 0.5f,
-		pos.x + scale.x * 0.5f,
-		pos.y + scale.y * 0.5f
-		);
+	hp -= damage;
+
+	if (hp < 0) {
+		hp = 0;
+		TIME->TimePause();
+	}
 }
 
 void CPlayer::Shot()

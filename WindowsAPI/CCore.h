@@ -7,11 +7,17 @@ private:
 	CCore();
 	virtual ~CCore();
 
+	bool gameover;
+
 public:
 	void Init();
 	void Release();
 	void Update();
 	void Render();
+	
+	bool GetGameover();
+private:
+	void SetGameover();
 };
 
 #define CORE	CCore::GetInstance()

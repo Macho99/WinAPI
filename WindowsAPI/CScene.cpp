@@ -13,6 +13,20 @@ CScene::~CScene()
 {
 }
 
+list<CGameObject*>* CScene::GetListObj()
+{
+	return listObj;
+}
+
+void CScene::SetListObj(list<CGameObject*>* listObj)
+{
+	for (int i = 0; i < (int)Layer::Size; i++) {
+		//깊은 복사는 오버헤드상 하지 않음
+		this->listObj[i] = listObj[i];
+	}
+}
+
+
 void CScene::SceneInit()
 {
 	Init();
@@ -31,6 +45,7 @@ void CScene::SceneRelease()
 			gameObj->GameObjectRelease();
 			delete gameObj;
 		}
+		listObj[layer].clear();
 	}
 	Release();
 }

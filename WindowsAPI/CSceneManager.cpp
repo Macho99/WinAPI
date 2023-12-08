@@ -5,9 +5,11 @@
 #include "CSceneTitle.h"
 #include "CSceneStage01.h"
 #include "CSceneManager.h"
+#include "CSceneGameover.h"
 
 CSceneManager::CSceneManager()
 {
+	prevScene = nullptr;
 	curScene = nullptr;
 }
 
@@ -22,6 +24,8 @@ void CSceneManager::Init()
 	mapScene.insert(make_pair(GroupScene::Title, sceneTitle));
 	CScene* sceneStage01 = new CSceneStage01();
 	mapScene.insert(make_pair(GroupScene::Stage01, sceneStage01));
+	CScene* sceneGameover = new CSceneGameover();
+	mapScene.insert(make_pair(GroupScene::Gameover, sceneGameover));
 
 	for (auto& pair : mapScene) {
 		pair.second->SceneInit();
@@ -51,15 +55,27 @@ void CSceneManager::Release()
 	mapScene.clear();
 }
 
+CScene* CSceneManager::GetPrevScene()
+{
+	return prevScene;
+}
+
 CScene* CSceneManager::GetCurScene()
 {
 	return curScene;
 }
 
-
 void CSceneManager::ChangeScene(GroupScene scene)
 {
+	prevScene = curScene;
 	curScene->SceneExit();
 	curScene = mapScene[scene];
 	curScene->SceneEnter();
+}
+
+void CSceneManager::InitScene(GroupScene scene)
+{
+	CScene* scenePtr = mapScene[scene];
+	scenePtr->SceneRelease();
+	scenePtr->SceneInit();
 }
